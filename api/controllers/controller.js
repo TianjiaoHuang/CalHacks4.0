@@ -1,10 +1,6 @@
 'use strict';
 process.env = require('dotenv-safe').load().parsed;
-  // Imports the Google Cloud client library
-const language = require('@google-cloud/language')({
-  projectId: 'folkloric-union-166117',
-  keyFilename: 'credential.json'
-});
+
 // Import PDF to HTML converter
 var pdftohtml = require('pdftohtmljs');
 var formidable = require('formidable');
@@ -45,7 +41,7 @@ exports.tweet = function(req, res) {
 exports.resume = function(req, res) {
   // reveive uploaded file
   form.parse(req, function (err, fields, files) {
-    var oldpath = files.filetoupload.path;
+    var oldpath = files.filetoupload;
     convert(oldpath);
 
 
@@ -71,6 +67,11 @@ function convert(path) {
 }
 
 function evaluateResume(text) {
+    // Imports the Google Cloud client library
+const language = require('@google-cloud/language')({
+  projectId: 'folkloric-union-166117',
+  keyFilename: 'credential.json'
+});
   const document = {
     'content': text,
     type: 'PLAIN_TEXT'
