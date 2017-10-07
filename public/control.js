@@ -39,12 +39,24 @@ function UpdateWordCount() {
 
 $(document).ready(function () {
 
-  var tweetBox = $('#tweet-input-box');
-  var bDisplayIcon = false;
-  var date = new Date();
-  // Initialize webpage
-  tweetBox.val("");
-  UpdateWordCount();
+  
+    $("#uploadbutton").click(function () {
+        var filename = $("#file").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/resume",
+            enctype: 'multipart/form-data',
+            data: {
+                file: filename
+            },
+            success: function () {
+                alert("Data Uploaded: ");
+            }
+        });
+    });
+
+
 
   $('#tweet-button').click(function () {
       // return if tweet-button is disabled or length of input is 0
