@@ -1,11 +1,16 @@
 'use strict';
 process.env = require('dotenv-safe').load().parsed;
-
   // Imports the Google Cloud client library
-  const language = require('@google-cloud/language')({
-    projectId: 'folkloric-union-166117',
-    keyFilename: 'credential.json'
-  });
+const language = require('@google-cloud/language')({
+  projectId: 'folkloric-union-166117',
+  keyFilename: 'credential.json'
+});
+// Import PDF to HTML converter
+var pdftohtml = require('pdftohtmljs');
+var formidable = require('formidable');
+var form = new formidable.IncomingForm();
+var fs = require('fs');
+
   
 
 
@@ -32,15 +37,40 @@ exports.get_user = function(req, res) {
 // tweet
 exports.tweet = function(req, res) {
   console.log(req.body.content);
+  convert(false);
   res.send("I get your tweet\n" + req.body.content);
 }
 
 // resume
 exports.resume = function(req, res) {
+  // reveive uploaded file
+  form.parse(req, function (err, fields, files) {
+    var oldpath = files.filetoupload.path;
+    convert(oldpath);
 
-  // The text to analyze
-  const text = req.body.content;
 
+  });
+}
+
+function convert(path) {
+    // Convert the file into html
+    var converter = new pdftohtml(path || 'blob/sample.pdf', "blob/sample.html");
+    converter.convert().then(function() {
+      console.log("Conversion success");
+    }).catch(function(err) {
+      console.error("Conversion error: " + err);
+      // res.status(500);
+      // res.send("Unable to parse the file into pdf")
+    });
+
+  // If you would like to tap into progress then create
+  // progress handler
+  converter.progress(function(ret) {
+    console.log ((ret.current*100.0)/ret.total + " %");
+  });
+}
+
+function evaluateResume(text) {
   const document = {
     'content': text,
     type: 'PLAIN_TEXT'

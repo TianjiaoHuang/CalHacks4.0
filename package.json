@@ -13,6 +13,7 @@
     "body-parser": "^1.17.1",
     "dotenv-safe": "^4.0.4",
     "express": "^4.16.1",
-    "googleapis": "^22.2.0"
+    "googleapis": "^22.2.0",
+    "pdftohtmljs": "^0.4.2"
   }
 }

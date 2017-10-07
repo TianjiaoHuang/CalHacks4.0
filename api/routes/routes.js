@@ -7,9 +7,9 @@ module.exports = function(app) {
      .get(controller.get_user)
   app.route('/new_user')
   .post(controller.new_user)
-  app.route('/something')
-  .post(controller.tweet)
   app.route('/tweet')
+  .post(controller.tweet)
+  app.route('/resume')
   .post(controller.resume)
   
 }
