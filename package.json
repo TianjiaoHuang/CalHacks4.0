@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv-safe": "^4.0.4",
     "@google-cloud/language": "^0.12.1",
     "express": "^4.16.1"
   }
