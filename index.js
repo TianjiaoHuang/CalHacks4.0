@@ -4,6 +4,11 @@ var express = require('express'),
     server = require('http').Server(app),
     port = 3000,
     bodyParser = require('body-parser');
+var google = require('googleapis');
+google.auth.getApplicationDefault(function(err, authClient) {
+    if (err) {
+      return console.log(err);
+    }});
 require('dotenv-safe').load();
 port = port || process.env.PORT;
 app.use(bodyParser.urlencoded({ extended: true }));
