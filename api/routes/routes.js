@@ -9,5 +9,8 @@ module.exports = function(app) {
   .post(controller.new_user)
   app.route('/tweet')
   .post(controller.tweet)
+
+  app.route('/resume')
+  .post(controller.resume)
   
 }
