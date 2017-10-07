@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/language": "^0.12.1",
     "express": "^4.16.1"
   }
 }
