@@ -43,8 +43,6 @@ exports.resume = function(req, res) {
   form.parse(req, function (err, fields, files) {
     var oldpath = files.filetoupload;
     convert(oldpath);
-
-
   });
 }
 

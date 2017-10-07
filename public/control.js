@@ -38,7 +38,11 @@ function UpdateWordCount() {
 }
 
 $(document).ready(function () {
-
+    var tweetBox = $('#tweet-input-box');
+    var bDisplayIcon = false;
+    var date = new Date();
+    // Initialize webpage
+    tweetBox.val("");
   
     $("#uploadbutton").click(function () {
         var filename = $("#file").val();
@@ -59,6 +63,8 @@ $(document).ready(function () {
 
 
   $('#tweet-button').click(function () {
+
+    UpdateWordCount();
       // return if tweet-button is disabled or length of input is 0
       if ($('#tweet-button').prop("disabled") === true)
       {
